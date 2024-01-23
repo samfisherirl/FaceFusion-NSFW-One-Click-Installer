@@ -1,11 +1,13 @@
 @echo off
 setlocal enabledelayedexpansion
 
-echo this is a work in progress...
-
 :: Set the working directory
 set "WORKING_DIR=%CD%"
-set "VENV_PATH="
+set "VENVPY=%WORKING_DIR%\venv\Scripts\python.exe"
+set "ACTIVATE=%WORKING_DIR%\venv\Scripts\activate.bat"
+set "INSTALL=%WORKING_DIR%\facefusion\install.py"
+set "RUN=%WORKING_DIR%\facefusion\run.py"
+
 :: Check if Git is installed and in PATH
 where git >nul 2>&1
 if errorlevel 1 (
@@ -50,33 +52,27 @@ if not defined PYTHON_DIR (
 set "PYTHON_EXE=!PYTHON_DIR!\python.exe"
 echo Found Python in %PYTHON_DIR%
 echo Executable is %PYTHON_EXE%
-
-set "VENV_PATH=%CD%\venv\Scripts\activate.bat"
-set "PYPATH=%CD%\venv\Scripts\python.exe"
-
-@echo on
+  
 :: Create virtual environment using located or downloaded Python
 echo Creating a virtual environment...
 call "%PYTHON_EXE%" -m venv venv
 
 :: Activate the virtual environment
 echo Activating the virtual environment...
-call "%VENV_PATH%"
-
+call "%ACTIVATE%"
 :: Install your python package with desired options
 echo Installing packages...
-call "%PYPATH%" install.py --torch cuda --onnxruntime cuda
-
+@echo on
+call "%VENVPY%" "%INSTALL%" --torch cuda --onnxruntime cuda
 :: Download content_analyser.py and copy to /facefusion/facefusion/
 echo Downloading content_analyser.py...
+@echo on
 powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/samfisherirl/facefusion-unleashed-one-click-installer/master/facefusion/content_analyser.py' -OutFile '.\facefusion\facefusion\content_analyser.py'"
 
 :: Run the program
 echo Running the program...
-python run.py --torch cuda --onnxruntime cuda
-
+call "%VENVPY%" "%RUN%" --torch cuda --onnxruntime cuda 
 :: Deactivate virtual environment
 :: "%WORKING_DIR%\venv\Scripts\deactivate.bat"
 
 echo Script completed.
-endlocal
