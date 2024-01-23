@@ -2,7 +2,7 @@
 
 ### More to be added soon. 
 
-> Next generation face swapper and enhancer.
+[> Next generation face swapper and enhancer.](https://github.com/facefusion/facefusion)
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/facefusion/facefusion/ci.yml.svg?branch=master)](https://github.com/facefusion/facefusion/actions?query=workflow:ci)
 ![License](https://img.shields.io/badge/license-MIT-green)
