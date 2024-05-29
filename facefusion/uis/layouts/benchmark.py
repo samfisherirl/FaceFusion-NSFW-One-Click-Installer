@@ -1,3 +1,4 @@
+import multiprocessing
 import gradio
 
 import facefusion.globals
@@ -10,6 +11,7 @@ def pre_check() -> bool:
 		conditional_download('.assets/examples',
 		[
 			'https://github.com/facefusion/facefusion-assets/releases/download/examples/source.jpg',
+			'https://github.com/facefusion/facefusion-assets/releases/download/examples/source.mp3',
 			'https://github.com/facefusion/facefusion-assets/releases/download/examples/target-240p.mp4',
 			'https://github.com/facefusion/facefusion-assets/releases/download/examples/target-360p.mp4',
 			'https://github.com/facefusion/facefusion-assets/releases/download/examples/target-540p.mp4',
@@ -61,4 +63,5 @@ def listen() -> None:
 
 
 def run(ui : gradio.Blocks) -> None:
-	ui.queue(concurrency_count = 2).launch(show_api = False, quiet = True)
+	concurrency_count = min(2, multiprocessing.cpu_count())
+	ui.queue(concurrency_count = concurrency_count).launch(show_api = False, quiet = True, inbrowser = facefusion.globals.open_browser)
