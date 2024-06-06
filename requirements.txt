@@ -8,3 +8,8 @@ psutil==5.9.8
 tqdm==4.66.4
 scipy==1.13.0
 --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple
+# Uncomment for testing
+# torch 
+# torchvision 
+# torchaudio 
+# --index-url https://download.pytorch.org/whl/cu118
