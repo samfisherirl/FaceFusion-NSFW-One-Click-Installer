@@ -1,12 +1,13 @@
 filetype==1.2.0
-gradio==3.50.2
+gradio==4.44.0
+gradio-rangeslider==0.0.6
 numpy==1.26.4
-onnx==1.16.0
-onnxruntime==1.17.3
-opencv-python==4.9.0.80
+onnx==1.16.1
+onnxruntime==1.19.2
+opencv-python==4.10.0.84
 psutil==5.9.8
-tqdm==4.66.4
-scipy==1.13.0
+tqdm==4.66.5
+scipy==1.14.1
 --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple
 # Uncomment for testing
 # torch 
