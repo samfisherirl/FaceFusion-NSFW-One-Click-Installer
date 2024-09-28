@@ -18,7 +18,6 @@ IF NOT "%VIRTUAL_ENV%" == "" (
     ECHO Virtual environment activated.
     ECHO Installing dependencies...
     %python% -m pip install --upgrade pip
-    %python% -m pip install -r requirements.txt
     %python% install.py --onnxruntime cuda --skip-conda
     ECHO Dependencies installed.
     
