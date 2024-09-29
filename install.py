@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-import subprocess
+import os
 
-subprocess.call([ 'pip', 'install' , 'inquirer', '-q' ])
+os.environ['SYSTEM_VERSION_COMPAT'] = '0'
 
 from facefusion import installer
 
