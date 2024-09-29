@@ -2,8 +2,8 @@
 
 Thanks henry for all the work.
 
-## If you're confused, [download here](https://github.com/samfisherirl/FaceFusion-NSFW-One-Click-Installer/releases/download/v3/FaceFusion-NSFW-One-Click-Installer-main.zip) 
+## NO LONGER BEING UPDATED
 
-make sure to have this installed https://developer.nvidia.com/cuda-12-4-1-download-archive 
+Download working version for FF 2.6 here (paceholder/previous version)
 
-View parent project readme here: https://github.com/facefusion/facefusion/readme.md
+This is now for use with my Docker version here: https://github.com/samfisherirl/facefusion-docker-NSFW
