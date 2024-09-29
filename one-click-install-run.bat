@@ -11,6 +11,7 @@ IF EXIST "%venv_dir%\Scripts\activate.bat" (
     ECHO Creating virtual environment...
     python -m venv %venv_dir%
     CALL %venv_dir%\Scripts\activate.bat
+    %python% install.py --onnxruntime cuda --skip-conda
 )
 
 REM Check if the virtual environment is activated
@@ -18,8 +19,6 @@ IF NOT "%VIRTUAL_ENV%" == "" (
     ECHO Virtual environment activated.
     ECHO Installing dependencies...
     %python% -m pip install --upgrade pip
-    %python% -m pip install -r requirements.txt
-    %python% install.py --onnxruntime cuda --skip-conda
     ECHO Dependencies installed.
     
     REM Check if the specified pyfile exists, if not, find the first .py file except __init__.py
