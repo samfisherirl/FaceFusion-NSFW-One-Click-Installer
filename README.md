@@ -13,26 +13,28 @@ This is now for use with my Docker version here: https://github.com/samfisherirl
 
 Same issue here. I had a look with procmon to investigate, and the problem is that onnxruntime_providers_tensorrt.dll has dependencies (imports) from the following dlls and fails to load because it is not finding them in the library load path search:
 
-cublas64_11.dll --> CUDA 11.x
-cudart64_110.dll --> CUDA 11.x
-cudnn64_8.dll --> cuDNN 8.x
-nvinfer_plugin.dll --> NVIDIA TensorRT
-nvinfer.dll --> NVIDIA TensorRT
+-   cublas64_11.dll --> CUDA 11.x
+-   cudart64_110.dll --> CUDA 11.x
+-   cudnn64_8.dll --> cuDNN 8.x
+-   nvinfer_plugin.dll --> NVIDIA TensorRT
+-   nvinfer.dll --> NVIDIA TensorRT
+
 So this issue is because TensorRT, CUDA 11.x, or cuDNN verison 8.x is not installed or not added to path yet.
 
 The one most commonly missing is probably TensorRT for CUDA 11.x:
 
-https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html
-NOTE: Requires a specific version of cuDNN (currently cuDNN 8.6.0)
-Then download TensorRT library from https://developer.nvidia.com/tensorrt
-Make sure to add the lib folder to path.
-Install CUDA 11.x:
-https://developer.nvidia.com/cuda-downloads
+-   <https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html>
+-   NOTE: Requires a specific version of cuDNN (currently cuDNN 8.6.0)
+-   Then download TensorRT library from <https://developer.nvidia.com/tensorrt>
+-   Make sure to add the `lib` folder to path.
 
-CuDNN 8.x for CUDA 11.x, matching the above TensorRT version requirement:
-https://developer.nvidia.com/cudnn
+Install CUDA 11.x:\
+<https://developer.nvidia.com/cuda-downloads>
 
-And don't forget them to add all the /bin and /lib folders that have all the dlls to your PATH system environment variables and restart your terminal.
+CuDNN 8.x for CUDA 11.x, matching the above TensorRT version requirement:\
+<https://developer.nvidia.com/cudnn>
+
+And don't forget them to add all the `/bin` and `/lib` folders that have all the dlls to your PATH system environment variables and restart your terminal.
 
 My issue was installing TensorRT and adding it to path, this fixed it to get the next error for me.
 
