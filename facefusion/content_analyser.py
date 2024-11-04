@@ -40,8 +40,6 @@ RATE_LIMIT = 10
 STREAM_COUNTER = 0
 
 
-
-
 def get_inference_pool() -> InferencePool:
 	model_sources = get_model_options().get('sources')
 	return inference_manager.get_inference_pool(__name__, model_sources)
@@ -76,7 +74,7 @@ def analyse_frame(vision_frame : VisionFrame) -> bool:
 	vision_frame = prepare_frame(vision_frame)
 	probability = forward(vision_frame)
 
-	return False
+	return probability > PROBABILITY_LIMIT
 
 
 def forward(vision_frame : VisionFrame) -> float:

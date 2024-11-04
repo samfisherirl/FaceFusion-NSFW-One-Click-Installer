@@ -9,10 +9,10 @@ ExpressionRestorerModel = Literal['live_portrait']
 FaceDebuggerItem = Literal['bounding-box', 'face-landmark-5', 'face-landmark-5/68', 'face-landmark-68', 'face-landmark-68/5', 'face-mask', 'face-detector-score', 'face-landmarker-score', 'age', 'gender', 'race']
 FaceEditorModel = Literal['live_portrait']
 FaceEnhancerModel = Literal['codeformer', 'gfpgan_1.2', 'gfpgan_1.3', 'gfpgan_1.4', 'gpen_bfr_256', 'gpen_bfr_512', 'gpen_bfr_1024', 'gpen_bfr_2048', 'restoreformer_plus_plus']
-FaceSwapperModel = Literal['blendswap_256', 'ghost_256_unet_1', 'ghost_256_unet_2', 'ghost_256_unet_3', 'inswapper_128', 'inswapper_128_fp16', 'simswap_256', 'simswap_512_unofficial', 'uniface_256']
+FaceSwapperModel = Literal['blendswap_256', 'ghost_1_256', 'ghost_2_256', 'ghost_3_256', 'inswapper_128', 'inswapper_128_fp16', 'simswap_256', 'simswap_unofficial_512', 'uniface_256']
 FrameColorizerModel = Literal['ddcolor', 'ddcolor_artistic', 'deoldify', 'deoldify_artistic', 'deoldify_stable']
 FrameEnhancerModel = Literal['clear_reality_x4', 'lsdir_x4', 'nomos8k_sc_x4', 'real_esrgan_x2', 'real_esrgan_x2_fp16', 'real_esrgan_x4', 'real_esrgan_x4_fp16', 'real_hatgan_x4', 'real_esrgan_x8', 'real_esrgan_x8_fp16', 'span_kendata_x4', 'ultra_sharp_x4']
-LipSyncerModel = Literal['wav2lip', 'wav2lip_gan']
+LipSyncerModel = Literal['wav2lip_96', 'wav2lip_gan_96']
 
 FaceSwapperSet = Dict[FaceSwapperModel, List[str]]
 
@@ -90,24 +90,41 @@ ProcessorStateKey = Literal\
 	'face_swapper_model',
 	'face_swapper_pixel_boost',
 	'frame_colorizer_model',
-	'frame_colorizer_blend',
 	'frame_colorizer_size',
+	'frame_colorizer_blend',
 	'frame_enhancer_model',
 	'frame_enhancer_blend',
 	'lip_syncer_model'
 ]
 ProcessorState = TypedDict('ProcessorState',
 {
-	'age_modifier_model': AgeModifierModel,
-	'age_modifier_direction': int,
+	'age_modifier_model' : AgeModifierModel,
+	'age_modifier_direction' : int,
+	'expression_restorer_model' : ExpressionRestorerModel,
+	'expression_restorer_factor' : int,
 	'face_debugger_items' : List[FaceDebuggerItem],
+	'face_editor_model' : FaceEditorModel,
+	'face_editor_eyebrow_direction' : float,
+	'face_editor_eye_gaze_horizontal' : float,
+	'face_editor_eye_gaze_vertical' : float,
+	'face_editor_eye_open_ratio' : float,
+	'face_editor_lip_open_ratio' : float,
+	'face_editor_mouth_grim' : float,
+	'face_editor_mouth_pout' : float,
+	'face_editor_mouth_purse' : float,
+	'face_editor_mouth_smile' : float,
+	'face_editor_mouth_position_horizontal' : float,
+	'face_editor_mouth_position_vertical' : float,
+	'face_editor_head_pitch' : float,
+	'face_editor_head_yaw' : float,
+	'face_editor_head_roll' : float,
 	'face_enhancer_model' : FaceEnhancerModel,
 	'face_enhancer_blend' : int,
 	'face_swapper_model' : FaceSwapperModel,
 	'face_swapper_pixel_boost' : str,
 	'frame_colorizer_model' : FrameColorizerModel,
-	'frame_colorizer_blend' : int,
 	'frame_colorizer_size' : str,
+	'frame_colorizer_blend' : int,
 	'frame_enhancer_model' : FrameEnhancerModel,
 	'frame_enhancer_blend' : int,
 	'lip_syncer_model' : LipSyncerModel
