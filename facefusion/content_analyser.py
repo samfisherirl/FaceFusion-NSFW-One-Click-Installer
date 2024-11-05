@@ -72,7 +72,7 @@ def analyse_stream(vision_frame : VisionFrame, video_fps : Fps) -> bool:
 
 def analyse_frame(vision_frame : VisionFrame) -> bool:
 	vision_frame = prepare_frame(vision_frame)
-
+	probability = forward(vision_frame)
 	return False
 
 
@@ -95,7 +95,7 @@ def prepare_frame(vision_frame : VisionFrame) -> VisionFrame:
 	vision_frame = cv2.resize(vision_frame, model_size).astype(numpy.float32)
 	vision_frame -= numpy.array(model_mean).astype(numpy.float32)
 	vision_frame = numpy.expand_dims(vision_frame, axis = 0)
-	return False
+	return vision_frame
 
 
 @lru_cache(maxsize = None)
