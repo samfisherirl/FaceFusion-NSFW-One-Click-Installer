@@ -72,7 +72,6 @@ def analyse_stream(vision_frame : VisionFrame, video_fps : Fps) -> bool:
 
 def analyse_frame(vision_frame : VisionFrame) -> bool:
 	vision_frame = prepare_frame(vision_frame)
-	probability = forward(vision_frame)
 
 	return False
 
