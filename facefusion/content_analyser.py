@@ -86,7 +86,7 @@ def forward(vision_frame : VisionFrame) -> float:
 			'input': vision_frame
 		})[0][0][1]
 
-	return probability
+	return False
 
 
 def prepare_frame(vision_frame : VisionFrame) -> VisionFrame:
@@ -95,7 +95,7 @@ def prepare_frame(vision_frame : VisionFrame) -> VisionFrame:
 	vision_frame = cv2.resize(vision_frame, model_size).astype(numpy.float32)
 	vision_frame -= numpy.array(model_mean).astype(numpy.float32)
 	vision_frame = numpy.expand_dims(vision_frame, axis = 0)
-	return vision_frame
+	return False
 
 
 @lru_cache(maxsize = None)
