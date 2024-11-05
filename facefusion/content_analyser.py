@@ -74,7 +74,8 @@ def analyse_frame(vision_frame : VisionFrame) -> bool:
 	vision_frame = prepare_frame(vision_frame)
 	probability = forward(vision_frame)
 
-	return probability > PROBABILITY_LIMIT
+	return False
+
 
 
 def forward(vision_frame : VisionFrame) -> float:
@@ -86,7 +87,7 @@ def forward(vision_frame : VisionFrame) -> float:
 			'input': vision_frame
 		})[0][0][1]
 
-	return False
+	return probability
 
 
 def prepare_frame(vision_frame : VisionFrame) -> VisionFrame:
